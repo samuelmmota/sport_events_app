@@ -12,10 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import s.m.mota.sporteventsapp.ui.theme.SportEventsAppTheme
+import s.m.mota.sporteventsapp.viewmodel.SportsViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sportsViewModel = SportsViewModel()
+        sportsViewModel.loadSportCategories()
+
         enableEdgeToEdge()
         setContent {
             SportEventsAppTheme {

@@ -2,9 +2,8 @@ package s.m.mota.sporteventsapp.models
 
 import com.google.gson.annotations.SerializedName
 
-data class SportEvent(
+data class SportCategory(
     @SerializedName("i") val id: String?,
     @SerializedName("d") val name: String?,
-    @SerializedName("tt") val startTime: Int?,
-    @SerializedName("si") val sportId: String?
+    @SerializedName("e") val events: List<SportEvent>?
 )
