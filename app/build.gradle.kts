@@ -56,4 +56,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // HttpLoggingInterceptor -> "com.squareup.okhttp3:logging-interceptor:4.10.0"
+    implementation(libs.logging.interceptor)
+    // retrofit -> "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation(libs.retrofit)
+    // gson converter -> "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation(libs.converter.gson)
 }
+
+//implementation(libs.converter.gson)
+//implementation(libs.logging.interceptor)
