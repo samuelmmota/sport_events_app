@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import s.m.mota.sporteventsapp.models.SportCategory
-import s.m.mota.sporteventsapp.models.SportEvent
 import s.m.mota.sporteventsapp.repository.SportsRepository
 import s.m.mota.sporteventsapp.retrofit.SportEventsApi
 
@@ -21,7 +20,8 @@ class SportsViewModel : ViewModel() {
 
     private val sportsRepository = SportsRepository(SportEventsApi)
     private val _sportCategories = MutableStateFlow<List<SportCategory>>(emptyList())
-
+    private val _errorState = MutableStateFlow<String?>(null)
+    val errorState: StateFlow<String?> = _errorState
     private val _collapsedCategoryIds = MutableStateFlow<List<String>>(emptyList())
     val collapsedCategoryIds: StateFlow<List<String>> = _collapsedCategoryIds
     private val _favoriteCategoryIds = MutableStateFlow<List<String>>(emptyList())
@@ -58,11 +58,13 @@ class SportsViewModel : ViewModel() {
             try {
                 val response = sportsRepository.fetchSportCategories()
                 _sportCategories.value = response
+                _errorState.value = null
                 Log.i(TAG, "_sportCategories.size: ${_sportCategories.value.size.toString()}")
                 for (sport in _sportCategories.value) {
                     Log.i(TAG, sport.toString())
                 }
             } catch (e: Exception) {
+                _errorState.value = e.localizedMessage ?: "Unknown error"
                 Log.e(TAG, "Error loading Sport Categories: $e")
             }
         }
