@@ -27,7 +27,7 @@ object SportEventsApi {
         GsonBuilder().registerTypeAdapter(SportCategory::class.java, SportCategoryDeserializer())
             .create()
 
-    val apiService: ApiInterface by lazy {
+    private val apiService: ApiInterface by lazy {
         Retrofit.Builder().baseUrl(BASE_URL).client(client)
             .addConverterFactory(GsonConverterFactory.create(gson)).build()
             .create(ApiInterface::class.java)

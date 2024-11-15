@@ -9,7 +9,7 @@ import java.lang.reflect.Type
 import com.google.gson.JsonObject
 
 class SportCategoryDeserializer : JsonDeserializer<SportCategory?> {
-    val TAG: String = "SportCategoryDeserializer"
+    private val TAG: String = "SportCategoryDeserializer"
     override fun deserialize(
         json: JsonElement, typeOfT: Type, context: JsonDeserializationContext
     ): SportCategory? {
@@ -25,7 +25,7 @@ class SportCategoryDeserializer : JsonDeserializer<SportCategory?> {
     }
 
 
-    fun parseSportCategory(jsonObject: JsonObject): SportCategory? {
+    private fun parseSportCategory(jsonObject: JsonObject): SportCategory? {
         return try {
             val idElement = jsonObject.get("i")
             val id =
@@ -66,7 +66,7 @@ class SportCategoryDeserializer : JsonDeserializer<SportCategory?> {
         }
     }
 
-    fun parseSportEvent(eventJsonObject: JsonObject): SportEvent? {
+    private fun parseSportEvent(eventJsonObject: JsonObject): SportEvent? {
         return try {
             val eventIdElement = eventJsonObject.get("i")
             val eventId =
